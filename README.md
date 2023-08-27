@@ -1,4 +1,4 @@
-#Blogging Website  - Academic Project
+# Blogging Website  - Academic Project
 
 (03/2023 - 04/2023)
 
@@ -29,7 +29,7 @@ Using PostgreSql for database management provides secure way for efficient data 
 
 
 
-#MIT License
+# MIT License
 
 Copyright (c) 2023 Karthik Santhosh
 
