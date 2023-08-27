@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block login %}
+  <div class="login-container">
+    <div class="auth-container">
+      <h1 class="head head__m">BlogApp</h1>
+    <p class="text text__s">Welcome back, Login to continue!</p>
+    <form class="auth-form" method="POST">
+      {% csrf_token %}
+      <input class="form_input" required placeholder="Username" type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" id="id_username">
+      <input class="form_input" required placeholder="Password" type="password" name="password" autocomplete="current-password" id="id_password">
+      <input class="btn" type="submit" value="Log In">
+    </form>
+    <p class="text__s text">------ or ------</p>
+    <p class="text text__s">Don't have an account? <span><a href="{% url 'register_page' %}">Register</a></span></p>
+    <div class="error-container">
+      {% if form.non_field_errors %}
+        <p>{{form.non_field_errors}}</p>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+{% endblock %}

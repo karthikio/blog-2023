@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block post %}
+  <div class="post-detail-container">
+    <div class="post-detail-img-container">
+      {% if post.image %}
+        <img class="post-detail-img" src="{{ post.image.url }}" alt="{{post.title}}">
+      {% endif %}
+    </div>
+    <div class="post-detail-overlay"></div>
+
+    <div class="post-detail-content-container">
+      <h1 class="head__l head">{{ post.title }}</h1>
+      {% for tag in post.tag.all %}
+        <p class="text__m tag">#{{ tag }}</p>
+      {% endfor %}
+      <div class="post-detail-content">
+        <p class="text__m text">{{ post.info }}</p>
+        <p class="text__m text">{{ post.body }}</p>
+        <p class="text__s text">{{ post.created }}</p>
+        <p class="text__s text">{{post.author}}</p>
+        <br>
+        {% if request.user == post.author %}
+          <div class="links-container">
+            <a title="Edit post" class="link" href="{% url 'post_edit_page' post.slug %}">
+              <span class="material-symbols-outlined">edit</span>
+              Edit Post
+            </a>
+            <a title="Delete post" class="link" href="{% url 'post_delete_page' post.slug %}">
+              <span class="material-symbols-outlined">delete</span>
+              Delete Post
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

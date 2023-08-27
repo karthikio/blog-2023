@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block create %}
+  <div class="create-post-container">
+    <h1 class="text text__l">Create New Post</h1>
+    <form class="post-form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input class="form_input" type="text" name="title" placeholder="Title" required="" id="id_title">
+      <textarea class="form_input" placeholder="Write a short description about your post" name="info" cols="40" rows="10" maxlength="300" required="" id="id_info"></textarea>
+      <textarea class="form_input" placeholder="Body" name="body" cols="40" rows="10" maxlength="4000" required="" id="id_body"></textarea>
+      {{form.image}}
+      {{form.tag}}
+      <p class="text text__s">{{form.featured}} Featured</p>
+      <input class="btn form_input" type="submit" value="Create">
+    </form>
+
+  </div>
+{% endblock %}

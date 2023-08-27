@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block register %}
+<div class="register-container">
+  <div class="auth-container">
+    <h1 class="head head__m">BlogApp</h1>
+    <p class="text text__s">Create New Account</p>
+
+    <form class="auth-form" method="POST">
+      {% csrf_token %}
+      <input class="form_input" placeholder="Username" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username">
+      <input class="form_input" placeholder="Password: Miminum 8 characters" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+      <input class="form_input" placeholder="Confirm Password" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+      <input class="btn" type="submit" value="Register">
+    </form>
+    <p class="text__s text">------ or ------</p>
+
+    <p class="text text__s">Already have an account? <span><a href="{% url 'login_page' %}">Login</a></span></p>
+    <div class="error-container">
+      {% if form.errors %}
+        <p class="">{{form.errors}}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

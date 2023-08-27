@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block feedback %}
+
+  <div class="create-post-container">
+    <h1 class="text text__l">Feedback</h1>
+    <form class="post-form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input placeholder="Name" class="form_input" type="text" name="name" maxlength="100" required="" id="id_name">
+      <textarea placeholder="Type your feedback" class="form_input" name="content" cols="40" rows="10" maxlength="500" required="" id="id_content"></textarea>
+     
+      <input class="btn form_input" type="submit" value="Submit feedback">
+    </form>
+
+  </div>
+{% endblock %}

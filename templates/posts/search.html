@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block search %}
+  <div class="search-container" id="search__close">
+    <form class="search-form" method="GET">
+      <input placeholder="Search for a blog post" class="search" type="text" name="search">
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <div class="search-output">
+      {% if search %}
+        <p class="text text__l">You have searched for "{{search}}..."</p>
+      {% endif %}
+      {% for title in qs %}
+        {% if title %}
+          <a class="results" href="{% url 'post_detail_page' title.slug %}">&bullet; {{title}}</a>
+          <br>
+        {% else %}
+          <p class="text text__l">No matches found!</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

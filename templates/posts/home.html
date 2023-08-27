@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home %}
+  <div class="home-container">
+    <div class="blog-showcase-container">
+      <h1 class="head__l head">What is the need for blogging website? </h1>
+      <p class="text__m text">A blog website or web page that is a part of a larger website. Typically, it features articles written in a conversational style with accompanying pictures or videos. Blogging is a fun and flexible way for self-expression and social connection, so it is no wonder blogs have become very popular.</p>
+    </div>
+
+
+    {% if tags %}
+    <h1 class="head__m head">Topics</h1>
+    <div class="tags-container-home">
+        <div class="tag-container-home featured-tag">
+          <p class="text__s text">featured</p>
+        </div>
+        {% for tag in tags %}
+          <div class="tag-container-home">
+            <p class="text__s text">{{ tag }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <h1 class="head__m head">
+      Featured Post
+    </h1>
+    <div class="featured-container-home">
+      <a href="{% url 'post_detail_page' featured.slug %}">
+      <div class="featured-img-container">
+        {% if featured.image.url %}
+        <img class="featured-img-home" src="{{featured.image.url}}" alt="">
+        <h1 class="head__s head">Featured</h1>
+        {% endif %}
+      </div>
+      <div class="featured-home-details">
+        <h1 class="head__l head">{{ featured.title }}</h1>
+        <p class="text__m text">{{featured.info}}</p>
+        <p class="text__s text">{{featured.created}}</p>
+        <p class="text__s text">{{featured.author}}</p> 
+      </div>
+    </a>
+    </div>
+
+  
+    {% if posts %}
+      <div class="posts-container">
+        <h1 class="head__m head">Recently Uploaded</h1>
+        <div class="posts-home">
+          {% for post in posts %}
+          <div class="post-container-home">
+            <a href="{% url 'post_detail_page' post.slug %} ">
+              <div class="post-img-home-container">
+                {% if post.image %}
+                <img class="post-img-home" src="{{ post.image.url }}" alt="">
+                {% endif%}
+              </div> 
+              <h1 class="head__l head">{{ post.title }}</h1>
+              <p class="text__m text">{{post.info}}</p>
+              <p class="text__s text">{{post.created}}</p>
+              <p class="text__s text">{{post.author}}</p>
+            </a>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    {% else %}
+        <p>No post!</p>
+    {% endif %}
+    <div class="feedback-container">
+      <h2 style="color: #ffffff;" class="head_l text">Feedbacks</h2>
+      {% for feed in feeds %}
+      <p style="color: #ffffff;" class="text__s text">{{feed.name}}</p>
+      <p style="color: #ffffff;" class="text__s text">{{feed.content}}</p>
+      <hr>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

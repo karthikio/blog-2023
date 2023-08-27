@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block edit %}
+  <div class="edit-post-container">
+    <form class="post-form" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+      <input type="submit" value="Update">
+    </form>
+  </div>
+{% endblock %}
